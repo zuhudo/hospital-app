@@ -12,25 +12,9 @@ import (
 	"hospital-app-backend/internal/utils"
 )
 
-// In-memory store (replace with database in production)
-var users = []models.User{
-	{
-		ID:        "1",
-		FirstName: "Admin",
-		LastName:  "User",
-		Email:     "admin@hospital.com",
-		Phone:     "+1234567890",
-		Role:      "admin",
-		CreatedAt: time.Now(),
-		UpdatedAt: time.Now(),
-	},
-}
-
-func init() {
-	// Hash the default admin password
-	hashed, _ := bcrypt.GenerateFromPassword([]byte("admin123"), bcrypt.DefaultCost)
-	users[0].Password = string(hashed)
-}
+// In-memory store — in production, use a database
+// No default users — register first via POST /api/auth/register
+var users []models.User
 
 type AuthHandler struct {
 	Config *config.Config

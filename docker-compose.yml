@@ -1,20 +1,19 @@
-version: '3.8'
-
 services:
   # PostgreSQL Database
   postgres:
     image: postgres:16-alpine
     container_name: hospital-db
+    restart: unless-stopped
     environment:
-      POSTGRES_USER: hospital
-      POSTGRES_PASSWORD: hospital_secret
-      POSTGRES_DB: hospital_db
+      POSTGRES_USER: ${DB_USER:-hospital}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
+      POSTGRES_DB: ${DB_NAME:-hospital_db}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U hospital -d hospital_db"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-hospital} -d ${DB_NAME:-hospital_db}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -25,27 +24,31 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: hospital-api
+    restart: unless-stopped
     ports:
       - "3000:3000"
     environment:
+      PORT: 3000
       DB_HOST: postgres
       DB_PORT: 5432
-      DB_USER: hospital
-      DB_PASSWORD: hospital_secret
-      DB_NAME: hospital_db
-      JWT_SECRET: your-secret-key-change-in-production
+      DB_USER: ${DB_USER:-hospital}
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
+      DB_NAME: ${DB_NAME:-hospital_db}
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is required}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-*}
     depends_on:
       postgres:
         condition: service_healthy
 
   # Astro Public Website
-  web-public:
+  web:
     build:
       context: ./web/public
       dockerfile: Dockerfile
     container_name: hospital-web
+    restart: unless-stopped
     ports:
-      - "4321:4321"
+      - "4321:80"
 
   # React Admin Dashboard
   dashboard:
@@ -53,10 +56,11 @@ services:
       context: ./web/dashboard
       dockerfile: Dockerfile
     container_name: hospital-dashboard
+    restart: unless-stopped
     ports:
-      - "5173:5173"
+      - "5173:80"
     environment:
-      VITE_API_URL: http://localhost:3000
+      VITE_API_URL: ${VITE_API_URL:-https://api.zuhudo.cc.cd}
 
 volumes:
   postgres_data:

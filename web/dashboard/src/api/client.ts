@@ -1,6 +1,9 @@
 import type { ApiResponse } from '../types';
 
-const API_BASE = '/api';
+// API base URL — configurable via VITE_API_URL env var
+// In development: proxied by Vite (see vite.config.ts)
+// In production: must be set to the backend API URL
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 class ApiClient {
   private getToken(): string | null {
@@ -12,6 +15,8 @@ class ApiClient {
     options: RequestInit = {}
   ): Promise<ApiResponse<T>> {
     const token = this.getToken();
+    const url = `${API_BASE}/${endpoint}`.replace(/\/+/g, '/').replace(':/', '://');
+
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -19,7 +24,7 @@ class ApiClient {
       ...(options.headers as Record<string, string>),
     };
 
-    const response = await fetch(`${API_BASE}/${endpoint}`, {
+    const response = await fetch(url, {
       ...options,
       headers,
     });

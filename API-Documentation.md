@@ -16,8 +16,8 @@ Login with email and password.
 **Request:**
 ```json
 {
-  "email": "admin@hospital.com",
-  "password": "admin123"
+  "email": "user@example.com",
+  "password": "your-password"
 }
 ```
 
@@ -28,11 +28,11 @@ Login with email and password.
   "data": {
     "token": "eyJhbGciOiJIUzI1NiIs...",
     "user": {
-      "id": "1",
-      "first_name": "Admin",
-      "last_name": "User",
-      "email": "admin@hospital.com",
-      "role": "admin"
+      "id": "uuid",
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "user@example.com",
+      "role": "patient"
     }
   }
 }

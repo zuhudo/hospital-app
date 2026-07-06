@@ -6,8 +6,8 @@ import { Input } from '../components/ui/Input';
 import { useAuth } from '../hooks/useAuth';
 
 export function Login() {
-  const [email, setEmail] = useState('admin@hospital.com');
-  const [password, setPassword] = useState('admin123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { signIn } = useAuth();
@@ -55,7 +55,7 @@ export function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               icon={<Mail className="w-4 h-4" />}
-              placeholder="admin@hospital.com"
+              placeholder="you@example.com"
             />
 
             <Input
