@@ -10,7 +10,7 @@
 
 A comprehensive, full-stack hospital and patient management system built with modern technologies.
 
-[📱 Mobile App](https://github.com/zuhudo/hospital-app-mobile) • [⚙️ Backend API](https://github.com/zuhudo/hospital-app-backend) • [🌐 Website](https://github.com/zuhudo/hospital-app-web) • [📊 Dashboard](https://github.com/zuhudo/hospital-app-dashboard) • [📖 Wiki](https://github.com/zuhudo/hospital-app/wiki)
+[🚀 One-Click Setup](https://github.com/zuhudo/hospital-app-setup) • [📱 Mobile App](https://github.com/zuhudo/hospital-app-mobile) • [⚙️ Backend API](https://github.com/zuhudo/hospital-app-backend) • [🌐 Website](https://github.com/zuhudo/hospital-app-web) • [📊 Dashboard](https://github.com/zuhudo/hospital-app-dashboard) • [📖 Wiki](https://github.com/zuhudo/hospital-app/wiki)
 
 </div>
 
@@ -53,6 +53,7 @@ hospital-app/
 | Repository | Description | Tech |
 |------------|-------------|------|
 | [hospital-app](https://github.com/zuhudo/hospital-app) | Main repo with docs & overview | — |
+| [hospital-app-setup](https://github.com/zuhudo/hospital-app-setup) | One-click monorepo setup scripts | Bash |
 | [hospital-app-mobile](https://github.com/zuhudo/hospital-app-mobile) | Mobile app for patients & doctors | Flutter |
 | [hospital-app-backend](https://github.com/zuhudo/hospital-app-backend) | REST API server | Go + Fiber |
 | [hospital-app-web](https://github.com/zuhudo/hospital-app-web) | Public hospital website | Astro |
@@ -68,7 +69,17 @@ hospital-app/
 - [pnpm](https://pnpm.io/) 8+
 - [PostgreSQL](https://www.postgresql.org/download/) (optional, in-memory for demo)
 
-### 1. Clone All Repos
+### 0. One-Click Setup (Recommended)
+
+```bash
+git clone https://github.com/zuhudo/hospital-app-setup.git
+cd hospital-app-setup
+./setup.sh
+```
+
+This will clone all repos, install dependencies, and verify everything builds. See [hospital-app-setup](https://github.com/zuhudo/hospital-app-setup) for more options.
+
+### 1. Manual Setup — Clone All Repos
 
 ```bash
 # Clone the main repo
