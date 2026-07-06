@@ -1,0 +1,86 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+
+const services = [
+  {
+    icon: '<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>',
+    title: 'Cardiology',
+    description: 'Complete heart care including diagnostics, interventional procedures, cardiac surgery, and rehabilitation programs.',
+    color: 'primary',
+  },
+  {
+    icon: '<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>',
+    title: 'Neurology',
+    description: 'Advanced neurological diagnostics and treatment for brain, spine, and nervous system disorders.',
+    color: 'accent',
+  },
+  {
+    icon: '<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>',
+    title: 'Pediatrics',
+    description: 'Specialized care for children from newborns to adolescents, including vaccinations and growth monitoring.',
+    color: 'green',
+  },
+  {
+    icon: '<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>',
+    title: 'Laboratory & Diagnostics',
+    description: 'Full-service laboratory with blood work, imaging, pathology, and rapid test results.',
+    color: 'purple',
+  },
+  {
+    icon: '<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>',
+    title: 'Emergency & Trauma',
+    description: '24/7 emergency department with trauma center, rapid triage, and critical care units.',
+    color: 'orange',
+  },
+  {
+    icon: '<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>',
+    title: 'Orthopedics',
+    description: 'Bone and joint care including sports medicine, joint replacement, and physiotherapy.',
+    color: 'pink',
+  },
+  {
+    icon: '<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>',
+    title: 'Ophthalmology',
+    description: 'Complete eye care from routine exams to advanced surgical procedures and vision correction.',
+    color: 'primary',
+  },
+  {
+    icon: '<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>',
+    title: 'Dermatology',
+    description: 'Skin care treatments including medical dermatology, cosmetic procedures, and skin cancer screening.',
+    color: 'accent',
+  },
+];
+---
+
+<MainLayout title="Services">
+  <section class="pt-32 section-padding bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Services</h1>
+      <p class="text-white/80 text-lg max-w-2xl mx-auto">
+        Comprehensive healthcare services delivered by expert medical professionals
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map(service => <ServiceCard {...service} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-primary-600 text-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Need a Specialized Service?</h2>
+      <p class="text-white/80 mb-8">
+        Contact us to learn more about our specialized departments and treatments.
+      </p>
+      <a href="/contact" class="btn-primary bg-white text-primary-600 hover:bg-gray-100">
+        Get in Touch
+      </a>
+    </div>
+  </section>
+</MainLayout>

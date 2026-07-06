@@ -1,0 +1,37 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  color?: string;
+}
+
+const { icon, title, description, color = 'primary' } = Astro.props;
+
+const colorClasses: Record<string, string> = {
+  primary: 'bg-primary-50 text-primary-600',
+  accent: 'bg-accent-50 text-accent-600',
+  green: 'bg-green-50 text-green-600',
+  purple: 'bg-purple-50 text-purple-600',
+  orange: 'bg-orange-50 text-orange-600',
+  pink: 'bg-pink-50 text-pink-600',
+};
+---
+
+<div class="card group cursor-pointer">
+  <div class:list={['w-14 h-14 rounded-2xl flex items-center justify-center mb-4', colorClasses[color]]}>
+    <Fragment set:html={icon} />
+  </div>
+  <h3 class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+    {title}
+  </h3>
+  <p class="text-sm text-gray-500 leading-relaxed">
+    {description}
+  </p>
+  <div class="mt-4 flex items-center text-primary-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+    Learn more
+    <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </div>
+</div>

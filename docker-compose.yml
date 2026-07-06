@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: hospital-db
+    environment:
+      POSTGRES_USER: hospital
+      POSTGRES_PASSWORD: hospital_secret
+      POSTGRES_DB: hospital_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hospital -d hospital_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Go Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: hospital-api
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: hospital
+      DB_PASSWORD: hospital_secret
+      DB_NAME: hospital_db
+      JWT_SECRET: your-secret-key-change-in-production
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # Astro Public Website
+  web-public:
+    build:
+      context: ./web/public
+      dockerfile: Dockerfile
+    container_name: hospital-web
+    ports:
+      - "4321:4321"
+
+  # React Admin Dashboard
+  dashboard:
+    build:
+      context: ./web/dashboard
+      dockerfile: Dockerfile
+    container_name: hospital-dashboard
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: http://localhost:3000
+
+volumes:
+  postgres_data:

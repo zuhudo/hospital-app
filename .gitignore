@@ -1,0 +1,73 @@
+# ==================== Flutter / Dart ====================
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub/
+.buildlog/
+.pubspec.lock
+*.iml
+.idea/
+.DS_Store
+app/android/.gradle/
+app/android/gradle/
+app/android/gradlew
+app/android/gradlew.bat
+app/android/local.properties
+app/android/**/GeneratedPluginRegistrant.java
+app/android/key.properties
+app/ios/Pods/
+app/ios/.symlinks/
+app/ios/Flutter/Flutter.framework
+app/ios/Flutter/Flutter.podspec
+app/ios/Runner/GeneratedPluginRegistrant.*
+app/.dart_tool/
+app/.packages
+app/.pub-cache/
+app/.pub/
+app/build/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+
+# ==================== Go ====================
+backend/vendor/
+backend/tmp/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+backend/.env
+
+# ==================== Node / Astro / React ====================
+node_modules/
+dist/
+.output/
+.vercel/
+.web/
+*.tsbuildinfo
+
+# web/public
+web/public/.astro/
+web/public/node_modules/
+web/public/dist/
+
+# web/dashboard
+web/dashboard/node_modules/
+web/dashboard/dist/
+
+# ==================== IDEs ====================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ==================== Environment ====================
+.env
+.env.local
+.env.*.local
+*.log

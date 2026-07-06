@@ -1,0 +1,34 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import DoctorCard from '../components/DoctorCard.astro';
+
+const doctors = [
+  { name: 'Dr. Sarah Johnson', specialization: 'Cardiologist', rating: 4.8, experience: '15 years experience' },
+  { name: 'Dr. Michael Chen', specialization: 'Neurologist', rating: 4.9, experience: '12 years experience' },
+  { name: 'Dr. Emily Williams', specialization: 'Pediatrician', rating: 4.7, experience: '8 years experience' },
+  { name: 'Dr. James Brown', specialization: 'Orthopedic Surgeon', rating: 4.6, experience: '20 years experience' },
+  { name: 'Dr. Lisa Anderson', specialization: 'Dermatologist', rating: 4.5, experience: '10 years experience' },
+  { name: 'Dr. Robert Taylor', specialization: 'Ophthalmologist', rating: 4.8, experience: '14 years experience' },
+  { name: 'Dr. Jennifer Martinez', specialization: 'Gynecologist', rating: 4.9, experience: '16 years experience' },
+  { name: 'Dr. David Wilson', specialization: 'Pulmonologist', rating: 4.7, experience: '11 years experience' },
+];
+---
+
+<MainLayout title="Our Doctors">
+  <section class="pt-32 section-padding bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Doctors</h1>
+      <p class="text-white/80 text-lg max-w-2xl mx-auto">
+        Meet our team of experienced and dedicated healthcare professionals
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {doctors.map(doctor => <DoctorCard {...doctor} />)}
+      </div>
+    </div>
+  </section>
+</MainLayout>
