@@ -55,12 +55,12 @@ services:
     build:
       context: ./web/dashboard
       dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-https://api.zuhudo.cc.cd/api}
     container_name: hospital-dashboard
     restart: unless-stopped
     ports:
       - "5173:80"
-    environment:
-      VITE_API_URL: ${VITE_API_URL:-https://api.zuhudo.cc.cd}
 
 volumes:
   postgres_data:
