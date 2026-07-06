@@ -36,6 +36,9 @@ services:
       DB_NAME: ${DB_NAME:-hospital_db}
       JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is required}
       ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-*}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@zuhudo.cc.cd}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-Zuhudo@2024!}
+      ADMIN_PHONE: ${ADMIN_PHONE:-+919876543210}
     depends_on:
       postgres:
         condition: service_healthy
